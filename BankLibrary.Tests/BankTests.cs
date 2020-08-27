@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace BankLibrary.Tests
 {
@@ -31,6 +26,19 @@ namespace BankLibrary.Tests
         }
 
         [Theory]
+        [InlineData(1000, 1000)]
+        [InlineData(2000, 1000)]
+        public void GetBalance_ShouldGetBalance(int x, double expected)
+        {
+            // Arrage
+            IBank bank = Setup();
+            // Act
+            double actual = bank.GetBalance(x);
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData(1000, 10, true)]
         [InlineData(2000, 100, true)]
         [InlineData(2000, 1001, false)]
@@ -39,9 +47,10 @@ namespace BankLibrary.Tests
             // Arrage
             IBank bank = Setup();
             // Act
-            bool actual = bank.Validate(x, y);
+            bool actual = bank.Withdraw(x,y);
+            bool a = bank.GetBalance(x) == 1000-y;
             // assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual && a);
         }
     }
 }
