@@ -6,8 +6,8 @@ namespace ATMLibrary
 {
     public class Card : ICard
     {
-        private int cardNumber;
-        public Card(int cardNumber)
+        private string cardNumber;
+        public Card(string cardNumber)
         {
             this.cardNumber = cardNumber;
         }
@@ -15,7 +15,7 @@ namespace ATMLibrary
         /// gets the cardnumber 
         /// </summary>
         /// <returns>the cardnumber</returns>
-        public int GetCardNumber()
+        public string GetCardNumber()
         {
             return cardNumber;
         }

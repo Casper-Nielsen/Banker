@@ -17,7 +17,7 @@ namespace BankLibrary
         /// </summary>
         /// <param name="cardNumber">the cardnumber for the account</param>
         /// <returns>the balance</returns>
-        public double GetBalance(int cardNumber)
+        public double GetBalance(string cardNumber)
         {
             return accountManager.GetAccount(cardNumber).GetBalance();
         }
@@ -28,7 +28,7 @@ namespace BankLibrary
         /// <param name="cardNumber">the cardnumber for the account</param>
         /// <param name="pin">the pin code</param>
         /// <returns>if it is validate</returns>
-        public bool Validate(int cardNumber, int pin)
+        public bool Validate(string cardNumber, int pin)
         {
             return accountManager.GetAccount(cardNumber).Pin == pin;
         }
@@ -39,7 +39,7 @@ namespace BankLibrary
         /// <param name="cardNumber">the cardnymber</param>
         /// <param name="amount">the amount that will be withdraws</param>
         /// <returns>if it was posible</returns>
-        public bool Withdraw(int cardNumber, double amount)
+        public bool Withdraw(string cardNumber, double amount)
         {
             if (accountManager.GetAccount(cardNumber).GetBalance() >= amount)
             {

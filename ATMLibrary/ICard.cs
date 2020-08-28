@@ -6,6 +6,6 @@ namespace ATMLibrary
 {
     public interface ICard
     {
-        int GetCardNumber();
+        string GetCardNumber();
     }
 }

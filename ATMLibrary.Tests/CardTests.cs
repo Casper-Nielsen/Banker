@@ -11,14 +11,14 @@ namespace ATMLibrary.Tests
     {
 
         [Theory]
-        [InlineData(1000, 1000)]
-        [InlineData(2000, 2000)]
-        public void GetCardNumber_ShouldGetCardNumber(int x, int expected)
+        [InlineData("1000", "1000")]
+        [InlineData("2000", "2000")]
+        public void GetCardNumber_ShouldGetCardNumber(string x, string expected)
         {
             // Arrage
             ICard card = new Card(x);
             // Act
-            double actual = card.GetCardNumber();
+            string actual = card.GetCardNumber();
             // assert
             Assert.Equal(expected, actual);
         }

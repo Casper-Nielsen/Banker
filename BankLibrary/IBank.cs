@@ -6,8 +6,8 @@ namespace BankLibrary
 {
     public interface IBank
     {
-        bool Validate(int cardNumber, int pin);
-        bool Withdraw(int cardNumber, double amount);
-        double GetBalance(int cardNumber);
+        bool Validate(string cardNumber, int pin);
+        bool Withdraw(string cardNumber, double amount);
+        double GetBalance(string cardNumber);
     }
 }

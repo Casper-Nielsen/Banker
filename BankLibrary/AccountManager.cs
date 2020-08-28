@@ -6,11 +6,11 @@ namespace BankLibrary
 {
     public class AccountManager : IAccountManager
     {
-        Dictionary<int, Account> accounts;
+        Dictionary<string, Account> accounts;
 
         public AccountManager()
         {
-            accounts = new Dictionary<int, Account>();
+            accounts = new Dictionary<string, Account>();
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace BankLibrary
         /// <param name="account">the account to add</param>
         /// <param name="CardNumber">the cardnumber the account goes with</param>
         /// <returns>if it was possible</returns>
-        public bool AddAccount(Account account, int CardNumber)
+        public bool AddAccount(Account account, string CardNumber)
         {
             if (accounts.ContainsKey(CardNumber))
             {
@@ -38,12 +38,11 @@ namespace BankLibrary
         /// </summary>
         /// <param name="CardNumber">the cardnumber</param>
         /// <returns>the account with that cardnumber</returns>
-        public Account GetAccount(int CardNumber)
+        public Account GetAccount(string CardNumber)
         {
             if (accounts.ContainsKey(CardNumber))
             {
-
-            return accounts[CardNumber];
+                return accounts[CardNumber];
             }
             else
             {

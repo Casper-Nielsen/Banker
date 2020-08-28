@@ -7,15 +7,15 @@ namespace BankLibrary.Tests
         private IBank Setup()
         {
             IAccountManager accountManager = new AccountManager();
-            accountManager.AddAccount(new Account(1000, 5352), 1000);
-            accountManager.AddAccount(new Account(1000, 5352), 2000);
+            accountManager.AddAccount(new Account(1000, 5352), "1000");
+            accountManager.AddAccount(new Account(1000, 5352), "2000");
             return new Bank(accountManager);
         }
 
         [Theory]
-        [InlineData(1000, 5352, true)]
-        [InlineData(2000, 5235, false)]
-        public void Validate_SimpleCardAndPinShouldValidate(int x, int y, bool expected)
+        [InlineData("1000", 5352, true)]
+        [InlineData("2000", 5235, false)]
+        public void Validate_SimpleCardAndPinShouldValidate(string x, int y, bool expected)
         {
             // Arrage
             IBank bank = Setup();
@@ -26,9 +26,9 @@ namespace BankLibrary.Tests
         }
 
         [Theory]
-        [InlineData(1000, 1000)]
-        [InlineData(2000, 1000)]
-        public void GetBalance_ShouldGetBalance(int x, double expected)
+        [InlineData("1000", 1000)]
+        [InlineData("2000", 1000)]
+        public void GetBalance_ShouldGetBalance(string x, double expected)
         {
             // Arrage
             IBank bank = Setup();
@@ -39,10 +39,10 @@ namespace BankLibrary.Tests
         }
 
         [Theory]
-        [InlineData(1000, 10, true)]
-        [InlineData(2000, 100, true)]
-        [InlineData(2000, 1001, false)]
-        public void Withdraw_SimpleValueShouldWithdraw(int x, int y, bool expected)
+        [InlineData("1000", 10, true)]
+        [InlineData("2000", 100, true)]
+        [InlineData("2000", 1001, false)]
+        public void Withdraw_SimpleValueShouldWithdraw(string x, int y, bool expected)
         {
             // Arrage
             IBank bank = Setup();

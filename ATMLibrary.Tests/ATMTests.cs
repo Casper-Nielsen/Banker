@@ -12,9 +12,9 @@ namespace ATMLibrary.Tests
     {
 
         [Theory]
-        [InlineData(1000)]
-        [InlineData(2000)]
-        public void InsertCard_ShouldInsertCard(int x)
+        [InlineData("1000")]
+        [InlineData("2000")]
+        public void InsertCard_ShouldInsertCard(string x)
         {
             // Arrage
             ICard card = new Card(x);
@@ -25,10 +25,10 @@ namespace ATMLibrary.Tests
             Assert.True(atm.InserCard(card));
         }
         [Theory]
-        [InlineData(1000, 1234, 1000, 1234, true)]
-        [InlineData(2000, 1234, 2000, 1235, false)]
-        [InlineData(1000, 1234, 2000, 1234, false)]
-        public void SingIn_ShouldSignInWithCard(int cn, int cp, int bcn, int bcp, bool expected)
+        [InlineData("1000", 1234, "1000", 1234, true)]
+        [InlineData("2000", 1234, "2000", 1235, false)]
+        [InlineData("1000", 1234, "2000", 1234, false)]
+        public void SingIn_ShouldSignInWithCard(string cn, int cp, string bcn, int bcp, bool expected)
         {
             // Arrage
             ICard card = new Card(cn);
@@ -43,9 +43,9 @@ namespace ATMLibrary.Tests
         }
 
         [Theory]
-        [InlineData(1234, 1000, 1234, false)]
-        [InlineData(1234, 2000, 1235, false)]
-        public void SingIn_ShouldNotAllowSignInWithoutCard(int cp, int bcn, int bcp, bool expected)
+        [InlineData(1234, "1000", 1234, false)]
+        [InlineData(1234, "2000", 1235, false)]
+        public void SingIn_ShouldNotAllowSignInWithoutCard(int cp, string bcn, int bcp, bool expected)
         {
             // Arrage
             IAccountManager accountManager = new AccountManager();
@@ -63,7 +63,7 @@ namespace ATMLibrary.Tests
             // Arrage
             ATM atm = new ATM(new Bank(new AccountManager()));
             // Act
-            ICard card = new Card(1234);
+            ICard card = new Card("1234");
             atm.InserCard(card);
 
             // assert
@@ -80,9 +80,9 @@ namespace ATMLibrary.Tests
         }
 
         [Theory]
-        [InlineData(1000, 1234, 100, 1000, 1234, 1000, true)]
-        [InlineData(2000, 1234, 1100, 2000, 1235, 1000, false)]
-        public void WithdrawMoney_ShouldWithdrawMoneyIfEnought(int cn, int cp, int withdraw, int bcn, int bcp, int amount, bool expected)
+        [InlineData("1000", 1234, 100, "1000", 1234, 1000, true)]
+        [InlineData("2000", 1234, 1100, "2000", 1235, 1000, false)]
+        public void WithdrawMoney_ShouldWithdrawMoneyIfEnought(string cn, int cp, int withdraw, string bcn, int bcp, int amount, bool expected)
         {
             // Arrage
             IAccountManager accountManager = new AccountManager();
@@ -96,9 +96,9 @@ namespace ATMLibrary.Tests
             Assert.Equal(expected, actual);
         }
         [Theory]
-        [InlineData(1000, 1234, 100, 1000, 1234, 1000, true)]
-        [InlineData(2000, 1234, 1100, 2000, 1235, 1000, true)]
-        public void WithdrawMoney_ShouldNotWithdrawMoneyIfNoCardIsInserted(int cn, int cp, int withdraw, int bcn, int bcp, int amount, bool expected)
+        [InlineData("1000", 1234, 100, "1000", 1234, 1000, true)]
+        [InlineData("2000", 1234, 1100, "2000", 1235, 1000, true)]
+        public void WithdrawMoney_ShouldNotWithdrawMoneyIfNoCardIsInserted(string cn, int cp, int withdraw, string bcn, int bcp, int amount, bool expected)
         {
             // Arrage
             IAccountManager accountManager = new AccountManager();

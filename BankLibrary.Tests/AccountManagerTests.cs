@@ -25,10 +25,10 @@ namespace BankLibrary.Tests
         }
         
         [Theory]
-        [InlineData(1, true)]
-        [InlineData(2, true)]
-        [InlineData(1, false)]
-        public void AddAccount_simpleAccountShouldAdd(int x, bool expected)
+        [InlineData("1000", true)]
+        [InlineData("218515102", true)]
+        [InlineData("4444444444444444", true)]
+        public void AddAccount_simpleAccountShouldAdd(string x, bool expected)
         {
             // Arrage
 
@@ -39,9 +39,9 @@ namespace BankLibrary.Tests
         }
 
         [Theory]
-        [InlineData(1000, 5352, 12345, 12345, true)]
-        [InlineData(2000, 5235, 12345, 12345, false)]
-        public void GetAccount_ShouldGetSimpleAccount(double x,int y, int z, int v, bool expected)
+        [InlineData(1000, 5352, "12345","12345", true)]
+        [InlineData(2000, 5235, "1234", "1234", true)]
+        public void GetAccount_ShouldGetSimpleAccount(double x,int y, string z, string v, bool expected)
         {
             // Arrage
             AccountManager.AddAccount(new Account(x,y), z);
@@ -52,8 +52,8 @@ namespace BankLibrary.Tests
         }
 
         [Theory]
-        [InlineData(3000, 3534, 54231, 5431)]
-        public void GetAccount_InvalidCardShouldFail(double x, int y, int z, int v)
+        [InlineData(3000, 3534, "54231", "5431")]
+        public void GetAccount_InvalidCardShouldFail(double x, int y, string z, string v)
         {
             // Arrage
             AccountManager.AddAccount(new Account(x, y), z);
